@@ -1,0 +1,6 @@
+{
+    "require": {
+        "ajt/guzzle-toggl": "^0.10.0",
+        "corneltek/getoptionkit": "~2"
+    }
+}
