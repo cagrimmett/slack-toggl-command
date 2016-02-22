@@ -1,5 +1,7 @@
 <?php
 
+/* ----- Copy this file to variables.php and fill everything out. See README.md for more info. ---- */
+
 /* ----- Your Slack info. The token is the validation token you received from Slack when creating the command. 
 The admin name should be the Slack username of the person who set up the command. 
 This is used to let people know who to contact when something doesn't work. ----- */
