@@ -11,6 +11,13 @@ $command = $_POST['command'];
 $text = $_POST['text'];
 $response_url = $_POST['response_url'];
 
+// Logging to log.csv
+$date = date("c");
+$log_array = array($date,$user_id,$user_name,$command,$text,$response_url,$channel_id,$channel_name,$token,$team_id,$team_domain);
+$output = fopen('log.csv', 'a');
+fputcsv($output, $log_array);
+fclose($output);
+
 require dirname(__FILE__). '/variables.php';
 require dirname(__FILE__).'/vendor/autoload.php';
 
