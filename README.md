@@ -54,6 +54,7 @@ Two third-party libraries are dependencies included via [Composer](http://getcom
 	- Additional options: 
 		- `--date [mm/dd/yy]` - Adds the time entry to a specific date. If none is passed, it defaults to today's date.
 		- `--task [task id]` - Adds the time entry to a task ID. See above to find your task ID for a project.
+
 ## Logging
 - I added basic logging to CSV for usage stats and debugging. This happens individually per project, stored in `log.csv`. Nothing is transmitted back to me. 
 - If you'd prefer to not log usage, simply comment out [lines 14-19](https://github.com/cagrimmett/slack-toggl-command/blob/master/slash_parsing.php#L14-L19) in `slash_parsing.php`.
