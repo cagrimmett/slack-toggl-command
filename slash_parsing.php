@@ -26,6 +26,7 @@ use GetOptionKit\OptionCollection;
 use GetOptionKit\OptionParser;
 use GetOptionKit\OptionPrinter\ConsoleOptionPrinter;
 
+$toggl_api_key = $toggl_api_key_mapping[$user_name];
 $toggl_client = TogglClient::factory(array('api_key' => $toggl_api_key, 'apiVersion' => $toggl_api_version, 'debug' => false));
 
 /* ----- Checking that the Slack token matches. If so, it goes through the if statements. If not, it returns an error messages and stops ----- */
@@ -33,6 +34,18 @@ if ($token !== $your_slack_token) {
 	echo ":warning: ERROR! Not authorized. Talk to @$your_admin_name.";
 	break;
 } 
+
+// Checking to see that the user's Toggl API key is in the array in variables.php
+elseif (key_exists($user_name, $toggl_api_key_mapping) == FALSE) {
+	echo ":warning: You haven't set up your Toggl API key with this command yet. Get it at the bottom of https://toggl.com/app/profile and send it  to @$your_admin_name.";
+	break;
+}
+
+// If a user's name is in the array in variables.php, get their toggl API key and set the $toggl_client 
+/*elseif (key_exists($user_name, $toggl_api_key_mapping) == TRUE) {
+	$toggl_api_key = $toggl_api_key_mapping[$user_name];
+	$toggl_client = TogglClient::factory(array('api_key' => $toggl_api_key, 'apiVersion' => $toggl_api_version, 'debug' => false));
+}*/
 
 // Add a time entry
 elseif ( preg_match('/add\s/i', $text) ) {

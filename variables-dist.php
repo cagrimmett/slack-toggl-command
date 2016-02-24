@@ -11,14 +11,12 @@ $your_admin_name = '';
 /* ----- Toggl API keys for each person who wants to use the command. 
 You can't all use the same key because the key controls whose account the entries go to.
 The user_names are Slack user names.
-See the bottom of https://toggl.com/app/profile to get it ----- */
- 
-if ($user_name == '') {
-	$toggl_api_key = '';	
-} 
-if ($user_name == '') {
-	$toggl_api_key = '';	
-} 
+See https://www.toggl.com/public/api#api_token for more information on the api key ----- */
+$toggl_api_key_mapping = array(
+	'fakeusername' => '123a45v678h67432cvgy34',
+	'' => '',
+	'' => ''
+); 
 // This shouldn't change.
 $toggl_api_version = 'v8';
 

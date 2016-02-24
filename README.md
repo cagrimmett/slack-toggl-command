@@ -25,7 +25,7 @@ Two third-party libraries are dependencies included via [Composer](http://getcom
 ### Configure the variables file.
 1. Copy the variables-dist.php file to `variables.php`
 2. Fill out the Slack token you got while setting up the slash command.
-3. Fill out users' Slack usernames with their corresponding Toggl API keys. They can get those keys at the bottom of [https://toggl.com/app/profile](https://toggl.com/app/profile).
+3. Fill out users' Slack usernames with their corresponding Toggl API keys in the array. They can get those keys at the bottom of [https://toggl.com/app/profile](https://toggl.com/app/profile).
 4. Enter a workspace ID for your team. to find yours, log in to [Toggl](http://toggl.com), then go to [https://www.toggl.com/api/v8/workspaces](https://www.toggl.com/api/v8/workspaces). Pick the ID of the workspace you want to use. Don't wrap it in quotes; it needs to be an integer.
 5. Set your team's default [timezone](http://php.net/manual/en/timezones.php). Right now it is set to `america/new_york`.
 6. Save the file as `variables.php` in the same directory and you are good to go!
@@ -54,9 +54,16 @@ Two third-party libraries are dependencies included via [Composer](http://getcom
 	- Additional options: 
 		- `--date [mm/dd/yy]` - Adds the time entry to a specific date. If none is passed, it defaults to today's date.
 		- `--task [task id]` - Adds the time entry to a task ID. See above to find your task ID for a project.
+## Logging
+- I added basic logging to CSV for usage stats and debugging. This happens individually per project, stored in `log.csv`. Nothing is transmitted back to me. 
+- If you'd prefer to not log usage, simply comment out [lines 14-19](https://github.com/cagrimmett/slack-toggl-command/blob/master/slash_parsing.php#L14-L19) in `slash_parsing.php`.
+- Since the log includes a Slack token, you'll want to deny access to `log.csv` on your webserver. I achieved that via my `.htaccess` file.
 
 ## Roadmap
 - [x] First commit
+- [x] Basic logging for usage stats and debugging
+- [ ] Ordering projects by client in `show project` command
+- [ ] Allow users to access projects in any of their workspaces, not just the one currently set in `variables.php` 
 - [ ] Checking and error handling for the `add` command (currently returns nothing when it fails)
 - [ ] Figure out how to get better error messages back from Toggl when a project or task doesn't exist (currently returns nothing when it fails)
 - [ ] Figure out how to pass error messages from GetOptionKit back to Slack about improper formatting
